@@ -22,24 +22,27 @@ def stream_graph_updates(input_user, graph ):
         for value in event.values():
             print("Assistant:", value['messages'][0].content)
 
-graph_builder = StateGraph(State)
-GOOGLE_API_KEY = os.environ['GOOGLE_API_KEY']
-llm = init_chat_model("google_genai:gemini-2.0-flash")
 
-graph_builder.add_node("chat_bot", chat_bot)
-graph_builder.add_edge(START, "chat_bot")
+if __name__ == '__main__':
+    graph_builder = StateGraph(State)
+    GOOGLE_API_KEY = os.environ['GOOGLE_API_KEY']
+    llm = init_chat_model("google_genai:gemini-2.0-flash")
 
-graph =graph_builder.compile()
+    graph_builder.add_node("chat_bot", chat_bot)
+    graph_builder.add_edge(START, "chat_bot")
 
-while True:
-    try:
-        user_input = input("user:" )
-        if user_input.lower() in ["quit", "exit", "q"]:
-            print("Bye Bye!")
-            break
-        stream_graph_updates(user_input, graph)
-    except Exception as error:
-        print("Didn't work: ", error)
+    graph =graph_builder.compile()
+
+    while True:
+        try:
+            user_input = input("user:" )
+            if user_input.lower() in ["quit", "exit", "q"]:
+                print("Bye Bye!")
+                break
+            stream_graph_updates(user_input, graph)
+            print()
+        except Exception as error:
+            print("Didn't work: ", error)
 
 # try:
 #     display(Image(graph.get_graph().draw_mermaid_png()))
