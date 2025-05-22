@@ -33,6 +33,12 @@ if __name__ == '__main__':
 
     graph =graph_builder.compile()
 
+    # try:
+    #     display(Image(graph.get_graph().draw_mermaid_png()))
+    # except Exception:
+    #     # This requires some extra dependencies and is optional
+    #     pass
+
     while True:
         try:
             user_input = input("user:" )
@@ -44,9 +50,4 @@ if __name__ == '__main__':
         except Exception as error:
             print("Didn't work: ", error)
 
-# try:
-#     display(Image(graph.get_graph().draw_mermaid_png()))
-# except Exception:
-#     # This requires some extra dependencies and is optional
-#     pass
 

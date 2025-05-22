@@ -29,7 +29,7 @@ if __name__ == '__main__':
         model=llm.bind_tools(tools),
         tools=tools,
         checkpointer=checkpointer,
-        prompt="You are a subtracting tool. ")
+        prompt="You are a subtracting tool.")
     try:
         config = {"configurable": {"thread_id": "1"}}
         output_agent = agent.invoke({"messages": [{"role":"user", "content":"What is 777-323?"}]}, config=config)
