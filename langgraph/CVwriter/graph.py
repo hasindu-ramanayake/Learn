@@ -12,6 +12,8 @@ from IPython.display import Image, display
 #pdf to .md file
 import pymupdf4llm
 import pathlib
+import fitz
+from langchain_community.document_loaders import PyMuPDFLoader
 
 from IPython.display import Image, display
 from langchain_core.runnables.graph_mermaid import (draw_mermaid_png, MermaidDrawMethod)
@@ -23,7 +25,7 @@ AGENT_DEBUG= True
 llm = init_chat_model(model="google_genai:gemini-2.0-flash")
 
 class AgentState(TypedDict):
-    file_path: str
+    file_path: list[str]
     user_cv: str
     job_description: str
     jd_outline: str
@@ -34,8 +36,32 @@ class AgentState(TypedDict):
     max_revision: int
 
 def convert_pdf_to_md_file(state:AgentState):
-    md_text = pymupdf4llm.to_markdown(state['file_path'])
-    cv = md_text.encode()
+    file = open("convert.md", "r")
+    cv = file.read()
+    file.close()
+    return { "user_cv": cv }
+    ##
+    docs = []
+    for file in state['file_path']:
+        loader = PyMuPDFLoader(file_path=file)
+        docs_lazy = loader.lazy_load()
+
+        for doc in docs_lazy:
+            docs.append(doc)
+        # print(docs[0].page_content[:100])
+        # print(docs[0].metadata)
+        # num_pages = pymupdf4llm.count_pages(state['file_path'])
+        # print(fitz.open(state['file_path']).page_count)
+        # all_pages = list(range(0, fitz.open(state['file_path']).page_count))
+        # md_text = pymupdf4llm.to_markdown(state['file_path'], pages=all_pages )
+        # cv = md_text.encode()
+    cv = docs
+    # pathlib.Path("convert.md").write_bytes(cv[0].page_content)
+    file = open("convert.md", "w")
+    for page in cv:
+        file.write(page.page_content)
+        file.write("\n----------------\n")
+    file.close()
     return { "user_cv": cv }
 
 def extract_JD(state:AgentState):
@@ -125,7 +151,7 @@ def generate_cv(state:AgentState):
 
 
 if __name__ == "__main__":
-    file_path = "./test.pdf"
+    file_paths = ["./test.pdf", "./Profile.pdf"]
     graph_builder = StateGraph(AgentState)
     graph_builder.add_node("PDF_to_MD_converter", convert_pdf_to_md_file)
     graph_builder.add_node("extract_jd", extract_JD)
@@ -147,9 +173,11 @@ if __name__ == "__main__":
 
     template = """# 
         [Your Full Name]
-        [Your Phone Number] | [Your Email Address] 
-        [Your LinkedIn Profile URL (Optional)] | [Your Portfolio/Website URL (Optional)]
-            
+        TP      :[Your Phone Number]
+        Email   :[Your Email Address] 
+        LinkedIn:[Your LinkedIn Profile URL]
+        GitHub  :[Your GitHub account URL]
+        ____    
         ## Summary/Objective
 
         [A brief (2-3 sentence) overview of your skills and career goals. Tailor this to each job you apply for. Focus on what you can offer the employer.]
@@ -168,8 +196,10 @@ if __name__ == "__main__":
         * [related Project description or outline]
         * [project responsibilities or contribution]
         * [project rewards/recognitions if any]
+
+        share relavant experience as N time...
         
-        ###[Experience 2]:
+        ###[Experience N]:
         * [related Project description or outline]
         * [project responsibilities or contribution]
         * [project rewards/recognitions if any]
@@ -181,18 +211,20 @@ if __name__ == "__main__":
         # [University Name]
         # [City, State]
         
-        ## Projects (Optional)
-        ### [Project Name]
+        ## Personal Projects and activities  (Optional)
+        ### [Personal Projects and activity]
         *   [Brief description of the project.]
         *   [Technologies used.]
-        *   [Key accomplishments or results.]
         *   [Link to the project (e.g., GitHub repository) if available.]
 
-        ### [Another Project Name]
+        ### [Personal Project and activity ]
         *   [Brief description of the project.]
         *   [Technologies used.]
-        *   [Key accomplishments or results.]
         *   [Link to the project (e.g., GitHub repository) if available.]
+
+        ## Volunteer Experience
+        ### [Organization Name], [Role]
+        *   [Description of your responsibilities and accomplishments.]
 
         ## Awards & Recognition (Optional)
         *   [Award Name], [Awarding Organization], [Date]
@@ -201,17 +233,12 @@ if __name__ == "__main__":
         ## Certifications (Optional)
         *   [Certification Name], [Certifying Organization], [Date]
         *   [Another Certification Name], [Certifying Organization], [Date]
-
-        ## Volunteer Experience
-
-        ### [Organization Name], [Role]
-        *   [Description of your responsibilities and accomplishments.] 
         
         """
 
 
     result = None
-    for result in graph.stream({"file_path":file_path, "max_revision":2, "num_revision":0, "job_description": jd, "template":template}):
+    for result in graph.stream({"file_path":file_paths, "max_revision":2, "num_revision":0, "job_description": jd, "template":template}):
         result = result
 
     file = open("CV.md", "w")
