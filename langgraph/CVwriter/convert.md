@@ -1,10 +1,10 @@
-# Hasindu Ramanayake 
+# Hasindu Ramanayake #
 (+94)70-2045090 
 hasindu.ramanayaka@eng.pdn.ac.lk 
 https://www.linkedin.com/in/hasindu-ramanayake/ 
 https://github.com/hasindu-ramanayake
 ----
-## INDUSTRY EXPERIENCE
+## INDUSTRY EXPERIENCE ##
 **Positions Held**
 Staff Engineer at Synopsys (2025-present)
 Senior Engineer at Synopsys (2024-2024)
@@ -62,21 +62,19 @@ Contribution: Created the data collecting backend, data collection, and design i
 backend, as well as own backend infrastructure.
 -----
 
-## EDUCATION
+## EDUCATION ##
 BSc. in Engineering, 
 Specializing in Computer Engineering (2019) 
 University of Peradeniya, Sri Lanka
 
-## PERSONAL PROJECTS
-Rust
-ChatApp, IP tracer_CLI, Design Patterns, Learning projects
+## PERSONAL PROJECTS ##
+Rust: ChatApp, IP tracer_CLI, Design Patterns, Learning projects
 http tcp server with a thread pool 
 C++ Networking/ Backend:
 http tcp server, asio client, MMO Server Interface
-Godot 4: 
-Classic space game, Classic  Flappy Bird, Classic Snake 
+Godot 4: Classic space game, Classic  Flappy Bird, Classic Snake 
 
-## COMPETITIONS & OTHER ACCOMPLISHMENT
+## COMPETITIONS & OTHER ACCOMPLISHMENT ##
 Acknowledging & Celebrating Excellence (ACE 2022) Runner up in the “Customer focus” category ( Team ) Ideathon finalist
 Ideathon is the hacker-thon organized by Synopsys South Asia to improve innovation in product teams. 
 Code Fest 4.0: 
@@ -88,35 +86,35 @@ University Colours:
 **FINAL YEAR PROJECT(UNDERGRADUATE)**
 Power-Aware High-Level Synthesis Flow for Mapping FPGA Designs Technologies used in professional environments
 
-## TECHNOLOGIES
+## TECHNOLOGIES ##
 I may not have direct professional experience in the following areas, but I am confident in my ability to acquire proficiency within a reasonable amount of time:
 General purpose: Rust, JAVA
 Web: React.js, Svelte
 ML: Pytorch, Hugging face models, basic ML and LLM
 Game Dev: Godot 4, GDScript
-Frameworks: Asio Lib, LLVM, CUDA 
+Frameworks: Asio Lib 
 
-## OTHER TECHNOLOGIES
+## OTHER TECHNOLOGIES ##
 Standalone software development
 Backend server development
 Video game development
 
-## TECHNOLOGIES EXPLORING
+## TECHNOLOGIES EXPLORING ##
 Rust Essential Training
 Programming Foundations: Design Patterns
 
-## Honors-Awards
+## Honors-Awards ##
 Wushu 1st grade - Sanda
 University Full Colors for Wushu
 Provincial Wushu Competition - 1st Place
 Provincial Wushu Competition - 1st Place
 XbotiX 2015 - Robotic Competition
 
-## Patents
+## Patents ##
 Supervised machine learning based memory and runtime prediction using design and auxiliary constructs(https://patents.google.com/patent/US20230072923A1) 
 Automated Debug of Falsified Power-Aware Formal Properties using Static Checker Results (https://patents.google.com/patent/US20220075920A1)
 
-## What can I bring to the team?
+## What can I bring to the team? ##
 • Highly adaptable and results-driven professional.
 • Consistently delivers results through innovation and a customer-
 focused mindset.
@@ -130,7 +128,7 @@ increased efficiency.
 • Willing to go the extra mile to tackle both routine and challenging
 tasks.
 
-## Non-Technical Experience
+## Non-Technical Experience ##
 
 **ACES: Association of Computer Engineering Students UOP Committee Member**
 September 2017 - February 2019 (1 year 6 months)
@@ -155,12 +153,11 @@ or to give a solution to a problem. This is one of the best opportunities the
 participants get to publicist their new ideas , to get an insight into the business
 world as well as to get an industrial exposure.
 
-AIESEC
-Manager
+**AIESEC - Manager**
 March 2017 - August 2017 (6 months)
 University of Peradeniya
  
-## Volunteering Projects
+## Volunteering Projects ##
 
 **Information Management, Marketing and Communication (IM & MarCom) Manager for summer projects**
 Team Member(IM & MarCom team) 16/17
